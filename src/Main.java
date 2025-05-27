@@ -46,7 +46,7 @@ public class Main {
             days += 2;
         } else if (distance > 60 && distance <= 100) {
             days += 3;
-        } else return  0 ;
+        } else return  -1 ;
         return days;
     }
 
@@ -65,7 +65,9 @@ public class Main {
         int clientOS = scanner.nextInt();
         System.out.print("Введите год создания смартфона (если введёте 0, тогда будет использована текущая дата) ");
         int clientDeviceYear = scanner.nextInt();
-        if (clientDeviceYear == 0) clientDeviceYear = LocalDate.now().getYear();
+        if (clientDeviceYear == 0){
+            clientDeviceYear = LocalDate.now().getYear();
+        }
         printRecommendationsForClients(clientOS, clientDeviceYear);
 
         System.out.println();
@@ -74,7 +76,7 @@ public class Main {
         System.out.print("Введите расстояние до адреса доставки клиенту карты банка в км ");
         int deliveryDistance = scanner.nextInt();
         int requireDays = countDaysForDelivery(deliveryDistance); //Требуемые дни для доставки
-        if (requireDays == 0) {
+        if (requireDays == -1) {
             System.out.println("Непозволительная дистанция доставки (доставка производится от 0 до 100 км)");
         } else {
             System.out.println("Доставка займет " + requireDays + " дней");
